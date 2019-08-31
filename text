@@ -1,9 +1,53 @@
 Implementing a recommender system
-1. Popularity based recommender system.
-2. Content based recommender system.
-3. Collaborative filtering.
 
+1. Popularity based recommender system.
+
+2. Content based recommender system.
+
+3. Collaborative filtering.
 
 for similarity -
 cosine similarity -
  Cosine similarity is a metric used to measure how similar the documents are irrespective of their size. Mathematically, it measures the cosine of the angle between two vectors projected in a multi-dimensional space. The cosine similarity is advantageous because even if the two similar documents are far apart by the Euclidean distance (due to the size of the document), chances are they may still be oriented closer together. The smaller the angle, higher the cosine similarity.
+
+
+CountVectorizer() - to count the number of similar words and their frequency
+EG:
+    from sklearn.feature_extraction.text import CountVectorizer
+    corpus = [
+      'This is the first document.',
+      'This document is the second document.',
+      'And this is the third one.',
+      'Is this the first document?',
+    ]
+    vectorizer = CountVectorizer()
+    X = vectorizer.fit_transform(corpus)
+    print(vectorizer.get_feature_names())
+
+    ['and', 'document', 'first', 'is', 'one', 'second', 'the', 'third', 'this']
+    print(X.toarray())
+
+    [[0 1 1 1 0 0 1 0 1]
+    [0 2 0 1 0 1 1 0 1]
+    [1 0 0 1 1 0 1 1 1]
+    [0 1 1 1 0 0 1 0 1]]
+
+fit_transform(self, raw_documents[, y])
+  Learn the vocabulary dictionary and return term-document matrix.
+
+
+A term-document matrix is a way of representing the words in the text as a table (or matrix) of numbers. The rows of the matrix represent the text responses to be analyzed, and the columns of the matrix represent the words from the text that are to be used in the analysis. The most basic version is binary.
+
+
+
+
+get_feature_names(self)
+  Array mapping from feature integer indices to feature name
+
+
+vocabulary_ : dict
+    A mapping of terms to feature indices.
+
+
+
+ toarray returns an ndarray; todense returns a matrix. If you want a matrix, use todense ; otherwise, use toarray .
